@@ -1,0 +1,12 @@
+.header {
+    padding: 15px;
+    background-color: #313438;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: calc(5px + 2vmin);
+    color: white;
+}
