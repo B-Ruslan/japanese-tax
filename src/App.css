@@ -2,6 +2,7 @@
   /* text-align: center; */
   display: flex;
   flex-direction: column;
+  align-items: stretch;
   font-family: system-ui;
   background-color: #b6c6e5;
   min-height: 100vh;
