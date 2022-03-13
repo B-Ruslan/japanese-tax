@@ -1,19 +1,12 @@
 import taxableIncome from '../../resources/taxableIncome';
 import taxRateResource from '../../resources/taxRate';
+import otherTaxes from '../../resources/otherTaxes';
 
 interface TaxRates {
     [index: string]: number;
 }
 
-function ensure<T>(argument: T | undefined | null, message: string = 'This value was promised to be there.'): T {
-    if (argument === undefined || argument === null) {
-      throw new TypeError(message);
-    }
-  
-    return argument;
-  }
-
-function getTaxRate(incomes: TaxRates, income: number, taxrates: TaxRates) {
+function getIncomeTax(incomes: TaxRates, income: number, taxrates: TaxRates) {
     const rateArray = Object.values(incomes)
     let taxableIncome = income;
     const incomeBrackets = rateArray.reduce((acc: number[], rec: number) => {
@@ -41,10 +34,25 @@ function getTaxRate(incomes: TaxRates, income: number, taxrates: TaxRates) {
     return taxAmount;
 }
 
+function getResidentTax(income: number) {
+  const residentTaxAmount = income * otherTaxes.residentTax;
+  return residentTaxAmount;
+} 
+
 const calculator = (income: number) => {
     const incomeInMillions = income / 1000000;
-    const taxAmount = getTaxRate(taxableIncome, incomeInMillions, taxRateResource);
-    return taxAmount * 1000000;
+    const incomeTaxAmount = getIncomeTax(taxableIncome, incomeInMillions, taxRateResource);
+    const postEmploymentSum = incomeInMillions - incomeTaxAmount;
+    const residentTaxAmount = getResidentTax(postEmploymentSum);
+    const netIncome = postEmploymentSum - residentTaxAmount;
+
+    const incomeModel = {
+      incomeTaxAmount: incomeTaxAmount * 1000000,
+      residentTaxAmount: residentTaxAmount * 1000000,
+      netIncome: netIncome * 1000000
+    }
+
+    return incomeModel;
 }
 
 export default calculator;

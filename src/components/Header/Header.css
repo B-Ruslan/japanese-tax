@@ -1,6 +1,6 @@
 .header {
     padding: 15px;
-    background-color: #313438;
+    background-color: #394F8A;
     min-height: 10vh;
     display: flex;
     flex-direction: column;
@@ -9,4 +9,13 @@
     text-align: center;
     font-size: calc(5px + 2vmin);
     color: white;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #e8e8e8;
+    color: #1abc9c;
 }
