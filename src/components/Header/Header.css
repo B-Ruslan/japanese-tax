@@ -1,14 +1,22 @@
+.headerSpan {
+    font-weight: 300;
+}
+
 .header {
-    padding: 15px;
-    background-color: #394F8A;
-    min-height: 10vh;
+    padding: 15px 150px;
+    background-color: #273868;
+    /* min-height: 10vh; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    font-size: calc(5px + 2vmin);
+    text-align: justify;
+    font-size: calc(3px + 2vmin);
     color: white;
+    /* border: 2px dashed yellow; */
+    /* border-width: 5px 0 5x 0; */
+    /* border-style: solid none; */
+    box-shadow: 0 10px 10px rgb(0 0 0 / 0.2);
 }
 
 .title {
@@ -18,4 +26,5 @@
     text-align: center;
     background-color: #e8e8e8;
     color: #1abc9c;
+    text-shadow: 0 0 1px black, 0 0 1px black, 0 0 1px black, 0 0 1px black;
 }

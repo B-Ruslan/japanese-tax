@@ -1,5 +1,15 @@
+h3 {
+    font-weight: 800;
+}
+
+span {
+    font-weight: 600;
+}
+
 ul {
     list-style: none;
+    /* margin-left: 4px; */
+    padding: 0 0 0 20px;
 }
 
 li {
@@ -9,18 +19,24 @@ li {
 .main {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    justify-content: center;
-    text-align: center;
+    align-items: center;
+    /* justify-content: center; */
+    /* text-align: center; */
     margin-top: 2%;
 }
 
 .assumptions {
-    margin: 20px 200px;
+    min-width: 50%;
+    background-color: #dbecff;
+    margin: 20px 100px 0 100px;
+    text-align: left;
+    box-shadow: 5px 5px 10px rgb(0 0 0 / 0.2);
 }
 
 .results {
+    min-width: 50%;
     text-align: center;
-    background-color: #1abc9c;
-    margin: 20px 200px;
+    background-color: #5dcfb9;
+    margin: 20px;
+    box-shadow: 5px 5px 10px rgb(0 0 0 / 0.2);
 }

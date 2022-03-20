@@ -7,7 +7,8 @@ const Main = () => {
     const [incomeTax, setIncomeTax] = useState<number>(0);
     const [residentTax, setResidentTax] = useState<number>(0);
     const [netIncome, setNetIncome] = useState<number>(0);
-    const [isResident, setIsResident] = useState<string>('');
+    const [isResident, setIsResident] = useState<boolean>(false);
+    const [isFreelancer, setIsFreelancer] = useState<boolean>(false);
 
     const handleIncomeChange = (e: React.SyntheticEvent): void => {
         const target = e.target as HTMLInputElement;
@@ -16,9 +17,12 @@ const Main = () => {
         e.preventDefault();
     }
 
-    const handleResidentChange = (e: React.SyntheticEvent): void => {
-        const target = e.target as HTMLInputElement;
-        console.log(target)
+    const handleResidentChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        setIsResident(e.target.checked);
+    }
+
+    const handleFreelancerChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+        setIsFreelancer(e.target.checked);
     }
 
     useEffect(() => {
@@ -32,29 +36,34 @@ const Main = () => {
 
     return (
         <div className="main">
+            <h2>How much do you make a year?</h2>
             <div className="assumptions">
-                <h3>How much do you make a year?</h3>
-                <form>
-                    <ul>
-                        <li>
-                            <label>
-                                Annual salary (in ¥):
-                            </label>
-                            <input type="number" value={income} onChange={handleIncomeChange} />
-                        </li>
-                        <li>
-                            <label>
-                                First year in Japan?
-                            </label>
-                            <input type="checkbox" value={isResident} onChange={handleResidentChange} />
-                        </li>
-                    </ul>
-                </form>
+                    <form>
+                        <ul>
+                            <li>
+                                <label>
+                                    Annual salary (in ¥):
+                                </label>
+                                <input type="number" value={income} onChange={handleIncomeChange} />
+                            </li>
+                            <li>
+                                <label>
+                                    First year in Japan?
+                                </label>
+                                <input type="checkbox" checked={isResident} onChange={handleResidentChange} />
+                                &nbsp; &nbsp; &nbsp; &nbsp;
+                                <label>
+                                    Freelancer (Blue Return System)
+                                </label>
+                                <input type="checkbox" checked={isFreelancer} onChange={handleFreelancerChange} />
+                            </li>
+                        </ul>
+                    </form>
             </div>
             <div className="results">
                 <p>Income tax: ¥{incomeTax.toFixed(0)}</p>
                 <p>Resident tax: ¥{residentTax.toFixed(0)}</p>
-                <p>Your net income is: ¥{netIncome.toFixed(0)}</p>
+                <p><span>Your net income is:</span> ¥{netIncome.toFixed(0)}</p>
             </div>
         </div>
     )
